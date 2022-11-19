@@ -4,6 +4,7 @@ package src;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 
 public class Game extends JPanel implements MouseListener, MouseMotionListener {
@@ -275,6 +276,24 @@ public class Game extends JPanel implements MouseListener, MouseMotionListener {
         }
     }
 
+    public void setBallsColor(Color color) {
+        for (int i = 1; i < MAX_BALLS; i++) {
+            balls[i].setColor(color);
+        }
+    }
+
+    public void setColorRandom() {
+        Random rand = new Random();
+        for (int i = 1; i < MAX_BALLS; i++) {
+            int a,b,c;
+            a = rand.nextInt(251); // 251 because bounds are 0 - [bound-1]
+            b = rand.nextInt(251); // 251 because bounds are 0 - [bound-1]
+            c = rand.nextInt(251); // 251 because bounds are 0 - [bound-1]
+            Color random = new Color(a,b,c);
+            balls[i].setColor(random);
+        }
+    }
+
     public boolean mouseIsInBall(MouseEvent e, Ball ball) {
         return ((e.getX() >= ball.getX() - ball.radius && e.getX() <= ball.getX() + ball.radius) && (e.getY() >= ball.getY() - ball.radius && e.getY() <= ball.getY() + ball.radius));
     }
@@ -321,7 +340,7 @@ public class Game extends JPanel implements MouseListener, MouseMotionListener {
                         balls[j].setSpeedY(0);
                         balls[j].setSpeedX(0);
                         balls[j].setRadius(0);
-                        System.out.println("Pocketed Red Ball");
+                        System.out.println("Pocketed game Ball");
                     }
                 }
             }

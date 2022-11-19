@@ -68,6 +68,11 @@ public class Ball {
         this.radius = radius;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+
     public void setSpeedAndAngle(double speed, double angle) {
         this.speed = speed;
         this.angle = angle;

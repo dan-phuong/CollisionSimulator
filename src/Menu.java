@@ -2,13 +2,16 @@ package src;
 
 
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Menu implements ActionListener {
 
-    JMenu menu, submenu, submenu2;
+    JMenu menu, submenu, submenu2, menu2;
     JMenuItem restartButton, slowSpeed, mediumSpeed, fastSpeed, smallRadius, mediumRadius, bigRadius, largeRadius;
+    JMenuItem redColor, blueColor, greenColor, yellowColor, blackColor, whiteColor, randomColor;
     Game game = new Game(1200, 600);
     JFrame frame = new JFrame("Billiard Ball Collision Simulation");
 
@@ -19,8 +22,25 @@ public class Menu implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JMenuBar menubar = new JMenuBar();
         menu = new JMenu("Menu");
+        menu2 = new JMenu("Color");
         submenu = new JMenu("Speed");
         submenu2 = new JMenu("Change Radius");
+
+        redColor = new JMenuItem("Red");
+        blueColor = new JMenuItem("Blue");
+        greenColor = new JMenuItem("Green");
+        yellowColor = new JMenuItem("Yellow");
+        blackColor = new JMenuItem("Black");
+        whiteColor = new JMenuItem("White");
+        randomColor = new JMenuItem("Random");
+
+        redColor.addActionListener(this);
+        blueColor.addActionListener(this);
+        greenColor.addActionListener(this);
+        yellowColor.addActionListener(this);
+        blackColor.addActionListener(this);
+        whiteColor.addActionListener(this);
+        randomColor.addActionListener(this);
 
         restartButton = new JMenuItem("Restart");
         slowSpeed = new JMenuItem("Slow");
@@ -50,9 +70,18 @@ public class Menu implements ActionListener {
         submenu2.add(bigRadius);
         submenu2.add(largeRadius);
 
+        menu2.add(redColor);
+        menu2.add(blueColor);
+        menu2.add(greenColor);
+        menu2.add(yellowColor);
+        menu2.add(blackColor);
+        menu2.add(whiteColor);
+        menu2.add(randomColor);
+
         menu.add(submenu);
         menu.add(submenu2);
         menubar.add(menu);
+        menubar.add(menu2);
         frame.setJMenuBar(menubar);
         frame.setLayout(null);
         frame.setContentPane(game);
@@ -67,7 +96,8 @@ public class Menu implements ActionListener {
         if (source == restartButton) {
             frame.setVisible(false);
             new Menu();
-        } else if (source == slowSpeed)
+        } 
+        else if (source == slowSpeed)
             game.setBallsSlow(0.95);
 
         else if (source == mediumSpeed)
@@ -84,7 +114,29 @@ public class Menu implements ActionListener {
 
         else if (source == bigRadius)
             game.setBallsRadius(game.getRadius());
+
         else if (source == largeRadius)
             game.setBallsRadius(game.getRadius() * 1.15);
+
+        else if (source == redColor)
+            game.setBallsColor(Color.RED);
+
+        else if (source == blueColor)
+            game.setBallsColor(Color.BLUE);
+
+        else if (source == greenColor)
+            game.setBallsColor(Color.GREEN);
+
+        else if (source == yellowColor)
+            game.setBallsColor(Color.YELLOW);
+
+        else if (source == blackColor)
+            game.setBallsColor(Color.BLACK);
+
+        else if (source == whiteColor)
+            game.setBallsColor(Color.WHITE);
+
+        else if (source == randomColor)
+            game.setColorRandom();
     }
 }

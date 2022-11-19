@@ -25,7 +25,7 @@ public class Table {
     }
 
     public void draw(Graphics g) {
-        g.setColor(new Color(10, 108, 3));
+        g.setColor(new Color(113, 121, 126));
         g.fillRect(minX, minY, maxX - minX - 1, maxY - minY - 1);
         g.drawRect(minX, minY, maxX - minX - 1, maxY - minY - 1);
         drawPockets(g);
